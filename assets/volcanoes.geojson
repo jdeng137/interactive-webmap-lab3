@@ -1,0 +1,313 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -71.17, -37.85 ] },
+        "properties": {
+          "name": "Copahue",
+          "country": "Argentina",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 2965,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -68.55, -27.12 ] },
+        "properties": {
+          "name": "Ojos del Salado",
+          "country": "Argentina, Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 6887,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -69.15, -18.17 ] },
+        "properties": {
+          "name": "Parinacota",
+          "country": "Bolivia, Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 6348,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -67.62, -23.3 ] },
+        "properties": {
+          "name": "Acamarachi",
+          "country": "Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 6046,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -73.75, -50.33 ] },
+        "properties": {
+          "name": "Aguilera",
+          "country": "Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 2546,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -68.24, -21.79 ] },
+        "properties": {
+          "name": "Azufre",
+          "country": "Chile",
+          "volcano_type": "Complex",
+          "elevation_m": 5846,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -69.05, -18.73 ] },
+        "properties": {
+          "name": "Arintica",
+          "country": "Chile",
+          "volcano_type": "Complex",
+          "elevation_m": 5597,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -69.09, -18.42 ] },
+        "properties": {
+          "name": "Guallatiri",
+          "country": "Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 6071,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -67.73, -23.37 ] },
+        "properties": {
+          "name": "Láscar",
+          "country": "Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5592,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -71.52, -38.97 ] },
+        "properties": {
+          "name": "Sollipulli",
+          "country": "Chile",
+          "volcano_type": "Caldera",
+          "elevation_m": 2282,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -71.93, -39.42 ] },
+        "properties": {
+          "name": "Villarrica",
+          "country": "Chile",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 2847,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -77.37, 1.22 ] },
+        "properties": {
+          "name": "Galeras",
+          "country": "Colombia",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 4276,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -76.4, 2.32 ] },
+        "properties": {
+          "name": "Purace",
+          "country": "Colombia",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 4650,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -75.32, 4.89 ] },
+        "properties": {
+          "name": "Ruiz, Nevado del",
+          "country": "Colombia",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5321,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.14, -0.48 ] },
+        "properties": {
+          "name": "Antisana",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5753,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -77.99, 0.03 ] },
+        "properties": {
+          "name": "Cayambe",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5790,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.82, -1.46 ] },
+        "properties": {
+          "name": "Chimborazo",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 6310,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.44, -0.68 ] },
+        "properties": {
+          "name": "Cotopaxi",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5911,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -91.55, -0.37 ] },
+        "properties": {
+          "name": "Fernandina",
+          "country": "Ecuador",
+          "volcano_type": "Caldera",
+          "elevation_m": 1476,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.6, -0.17 ] },
+        "properties": {
+          "name": "Guagua Pichincha",
+          "country": "Ecuador",
+          "volcano_type": "Unknown",
+          "elevation_m": 4784,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.71, -0.66 ] },
+        "properties": {
+          "name": "Iliniza",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5248,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.27, 0.13 ] },
+        "properties": {
+          "name": "Mojanda",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 4263,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -77.66, -0.08 ] },
+        "properties": {
+          "name": "Reventador",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 3562,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.34, -2.0 ] },
+        "properties": {
+          "name": "Sangay",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5230,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -77.63, -0.54 ] },
+        "properties": {
+          "name": "Sumaco",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 3990,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -78.44, -1.47 ] },
+        "properties": {
+          "name": "Tungurahua",
+          "country": "Ecuador",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 2011,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -71.85, -15.78 ] },
+        "properties": {
+          "name": "Sabancaya",
+          "country": "Peru",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5967,
+          "source": "Volcano World (user-provided table)"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": { "type": "Point", "coordinates": [ -70.9, -16.36 ] },
+        "properties": {
+          "name": "Ubinas",
+          "country": "Peru",
+          "volcano_type": "Stratovolcano",
+          "elevation_m": 5672,
+          "source": "Volcano World (user-provided table)"
+        }
+      }
+    ]
+  }

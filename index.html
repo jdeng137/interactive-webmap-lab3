@@ -2,36 +2,40 @@
 <html lang="en-US">
 <head>
     <meta charset="utf-8">
-    <title>Earthquake List</title>
+    <title>South America Volcanoes</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
-    <!-- Mapbox GL JS library -->
+    <!-- Mapbox GL JS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
 
-    <!-- Internal CSS -->
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
-        }
-
-        #container {
-            display: flex;
-            height: 100vh;
-            flex-direction: row;
-            align-items: stretch;
-        }
-
-        #side-panel {
-            flex-basis: 500px;
-            overflow-y: scroll;
-            padding: 20px;
-            box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+            height: 100%;
+            width: 100%;
         }
 
         #map {
-            flex-grow: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        #side-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            max-height: 90%;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            border-radius: 8px;
         }
 
         button {
@@ -47,83 +51,204 @@
 
         th, td {
             text-align: left;
-            padding: 16px;
+            padding: 10px;
         }
 
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        @media (max-width: 1024px) {
+            #side-panel {
+                display: none;
+            }
+        }
+
+        /* Legend styling */
+        #legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            line-height: 1.4em;
+        }
+
+        .legend-key {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
     </style>
-</head>
+    </head>
 
-<body>
-    <main id="container">
-        <div id="side-panel">
-            <h2>Earthquake List</h2>
-            <button id="sortButton">Sort by Magnitude</button>
+    <body>
 
-            <table id="quakeTable">
-                <tr>
-                    <th>id</th>
-                    <th>magnitude</th>
-                    <th>timestamp</th>
-                </tr>
-                <!-- Earthquake data will be inserted here -->
-            </table>
-        </div>
+    <div id="map"></div>
 
-        <div id="map"></div>
-    </main>
+    <div id="side-panel">
+        <h2>Volcanoes in South America</h2>
+        <button id="sortButton">Sort by Elevation</button>
 
-    <!-- JavaScript (Map and Table will go here next) -->
+        <table id="volcanoTable">
+            <tr>
+                <th>Name</th>
+                <th>Elevation (m)</th>
+                <th>Country</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="legend">
+        <div><span class="legend-key" style="background-color: red; border: 2px solid white;"></span> Volcano</div>
+        <div><span class="legend-key" style="background-color: #00FF00;"></span> Population (circle size = density)</div>
+        <div><span class="legend-key" style="background-color: #B57EDC;"></span> Country boundaries</div>
+    </div>
+
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbmcxMzciLCJhIjoiY21oY3BwdGxtMW93bDJsb282bnl6bWl0NSJ9.t19u2LlOUGTPHQ7N82CpkA';
-        // Create the map instance
-        let map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/satellite-streets-v12', // pick a different style
-            zoom: 3, // adjust zoom for South America
-            center: [-60, -15] // roughly center on South America
+    mapboxgl.accessToken = 'pk.eyJ1IjoiamRlbmcxMzciLCJhIjoiY21oY3BwdGxtMW93bDJsb282bnl6bWl0NSJ9.t19u2LlOUGTPHQ7N82CpkA';
+
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+        zoom: 3,
+        center: [-60, -15]
+    });
+
+    async function geojsonFetch() {
+        let response, southAmerica, volcanoes, population;
+
+        // Load GeoJSON files
+        response = await fetch('assets/southamerica.json');
+        southAmerica = await response.json();
+
+        response = await fetch('assets/volcanoes.geojson');
+        volcanoes = await response.json();
+
+        response = await fetch('assets/population.geojson');
+        population = await response.json();
+
+        map.on('load', function () {
+            // South America polygons
+            map.addSource('southamerica', { type: 'geojson', data: southAmerica });
+            map.addLayer({
+                id: 'southamerica-layer',
+                type: 'fill',
+                source: 'southamerica',
+                paint: { 'fill-color': '#B57EDC', 'fill-opacity': 0.6 }
+            });
+            map.addLayer({
+                id: 'southamerica-outline',
+                type: 'line',
+                source: 'southamerica',
+                paint: { 'line-color': '#000', 'line-width': 2 }
+            });
+
+            // Filter population points to South America
+            let saPopulation = {
+                type: "FeatureCollection",
+                features: population.features.filter(f => {
+                    let lon = f.geometry.coordinates[0];
+                    let lat = f.geometry.coordinates[1];
+                    return lon >= -82 && lon <= -34 && lat >= -56 && lat <= 13;
+                })
+            };
+
+            // Population layer
+            map.addSource('population', { type: 'geojson', data: saPopulation });
+            map.addLayer({
+                id: 'population-layer',
+                type: 'circle',
+                source: 'population',
+                paint: {
+                    'circle-radius': [
+                        'interpolate',
+                        ['linear'],
+                        ['to-number', ['get', 'Density']],
+                        0, 3,
+                        10, 6,
+                        100, 10,
+                        1000, 15
+                    ],
+                    'circle-color': '#00FF00',
+                    'circle-opacity': 0.6
+                }
+            });
+
+            // Volcano layer
+            map.addSource('volcanoes', { type: 'geojson', data: volcanoes });
+            map.addLayer({
+                id: 'volcanoes-layer',
+                type: 'circle',
+                source: 'volcanoes',
+                paint: {
+                    'circle-radius': 6,
+                    'circle-color': 'red',
+                    'circle-stroke-color': 'white',
+                    'circle-stroke-width': 2
+                }
+            });
+
+            // Volcano popup
+            map.on('click', 'volcanoes-layer', function (e) {
+                const props = e.features[0].properties;
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const name = props.name || "Unknown volcano";
+                const country = props.country || "N/A";
+                const elevation = props.elevation_m ? props.elevation_m + " m" : "Unknown";
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(`<strong>${name}</strong><br>Country: ${country}<br>Elevation: ${elevation}`)
+                    .addTo(map);
+            });
+
+            map.on('mouseenter', 'volcanoes-layer', () => map.getCanvas().style.cursor = 'pointer');
+            map.on('mouseleave', 'volcanoes-layer', () => map.getCanvas().style.cursor = '');
+
+            // Population popup
+            map.on('click', 'population-layer', function (e) {
+                const props = e.features[0].properties;
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const name = props.Name || "Unknown area";
+                const density = props.Density ? Number(props.Density).toLocaleString() : "N/A";
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(`<strong>${name}</strong><br>Density: ${density} people/km²`)
+                    .addTo(map);
+            });
+
+            map.on('mouseenter', 'population-layer', () => map.getCanvas().style.cursor = 'pointer');
+            map.on('mouseleave', 'population-layer', () => map.getCanvas().style.cursor = '');
         });
 
-        // Async function to load GeoJSON
-        async function geojsonFetch() {
-            let response, southAmerica;
+        // Populate volcano table
+        let table = document.getElementById('volcanoTable');
+        volcanoes.features.forEach(v => {
+            let row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = v.properties.name;
+            row.insertCell(1).innerHTML = v.properties.elevation_m;
+            row.insertCell(2).innerHTML = v.properties.country;
+        });
+    }
 
-            // Fetch South America GeoJSON
-            response = await fetch('assets/southamerica.json');
-            southAmerica = await response.json();
+    geojsonFetch();
 
-            // Add the layer when map has loaded
-            map.on('load', function () {
-                map.addSource('southamerica', {
-                    type: 'geojson',
-                    data: southAmerica
-                });
+    // Sort table by elevation
+    document.getElementById('sortButton').addEventListener('click', function() {
+        let table = document.getElementById('volcanoTable');
+        let rows = Array.from(table.rows).slice(1); // skip header row
+        rows.sort((a, b) => parseFloat(b.cells[1].innerText) - parseFloat(a.cells[1].innerText));
+        rows.forEach(row => table.appendChild(row));
+    });
+    </script>
 
-                map.addLayer({
-                    id: 'southamerica-layer',
-                    type: 'fill',
-                    source: 'southamerica',
-                    paint: {
-                        'fill-color': '#B57EDC', // lavender purple
-                        'fill-opacity': 0.6      // semi-transparent
-                    }
-                });
-
-                map.addLayer({
-                    id: 'southamerica-outline',
-                    type: 'line',
-                    source: 'southamerica',
-                    paint: {
-                        'line-color': '#000',
-                        'line-width': 2
-                    }
-                });
-            });
-        }
-        // Call the async function
-        geojsonFetch();
-    </script>    
 </body>
 </html>
